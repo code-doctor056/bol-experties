@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helllo_world/features/auth/screen/PaymentScreen.dart';
 
 class ContactBankDetailsScreen extends StatelessWidget {
   const ContactBankDetailsScreen({super.key});
@@ -78,7 +79,12 @@ class ContactBankDetailsScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Add validation logic here
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PaymentScreen(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade400,
