@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 
 class ChooseTimeSlotScreen extends StatefulWidget {
-  const ChooseTimeSlotScreen({Key? key}) : super(key: key);
+  const ChooseTimeSlotScreen({super.key});
 
   @override
   State<ChooseTimeSlotScreen> createState() => _ChooseTimeSlotScreenState();
@@ -15,23 +15,32 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
   String selectedTime = '10:00';
 
   final List<String> times = [
-    '09:00', '10:00', '11:00',
-    '14:00', '15:00', '16:00',
-    '17:00', '18:00', '19:00'
+    '09:00',
+    '10:00',
+    '11:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
   ];
 
   final List<Map<String, String>> suggestedTimes = [
-    {
-      'day': 'Wednesday',
-      'time': '10:00–12:00',
-      'note': 'Expert nearby',
-    },
-    {
-      'day': 'Thursday',
-      'time': '14:00–16:00',
-      'note': 'Recommended by AI',
-    },
+    {'day': 'Wednesday', 'time': '10:00–12:00', 'note': 'Expert nearby'},
+    {'day': 'Thursday', 'time': '14:00–16:00', 'note': 'Recommended by AI'},
   ];
+
+    final List<NeatCleanCalendarEvent> _eventList = [
+    NeatCleanCalendarEvent(
+      'Example Event',
+      startTime: DateTime.now(),
+      endTime: DateTime.now().add(const Duration(hours: 1)),
+      description: 'Some description here',
+      color: Colors.deepOrange,
+    ),
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +67,12 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                 color: Colors.black,
                 minHeight: 4,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
               const Text(
                 "Choose a Time Slot",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 15),
 
               /// Suggested Times
               Row(
@@ -84,13 +93,15 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: isSelected
-                                ? Colors.black
-                                : Colors.grey.shade300,
+                            color:
+                                isSelected
+                                    ? Colors.black
+                                    : Colors.grey.shade300,
                           ),
-                          color: isSelected
-                              ? Colors.black12.withOpacity(0.04)
-                              : Colors.transparent,
+                          color:
+                              isSelected
+                                  ? Colors.black12.withOpacity(0.04)
+                                  : Colors.transparent,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,21 +113,25 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                                 Text(
                                   time['day']!,
                                   style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ],
                             ),
                             const SizedBox(height: 8),
                             Text(
                               time['time']!,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const SizedBox(height: 6),
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 6, vertical: 2),
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Colors.black.withOpacity(0.05),
@@ -125,7 +140,7 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                                 time['note']!,
                                 style: const TextStyle(fontSize: 11),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -139,97 +154,69 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
               /// Calendar Section
               Text(
                 DateFormat.yMMMM().format(selectedDate),
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 70,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 30,
-                  itemBuilder: (context, index) {
-                    final date =
-                        DateTime.now().add(Duration(days: index));
-                    final isSelected =
-                        selectedDate.day == date.day &&
-                            selectedDate.month == date.month &&
-                            selectedDate.year == date.year;
-
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedDate = date;
-                        });
-                      },
-                      child: Container(
-                        width: 50,
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        decoration: BoxDecoration(
-                          color: isSelected ? Colors.black : Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: isSelected
-                                ? Colors.black
-                                : Colors.grey.shade300,
-                          ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              DateFormat.E().format(date),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: isSelected
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              date.day.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: isSelected
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
-              
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+              SizedBox (
+                height: 310,
+                child: Calendar(
+                  startOnMonday: false,
+                  weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+                  isExpandable: false,
+                  eventsList: null,
+                  eventDoneColor: Colors.green,
+                  selectedColor: Colors.pink,
+                  selectedTodayColor: Colors.red,
+                  todayColor: Colors.blue,
+                  eventColor: null,
+                  locale: 'en_US',
+                  todayButtonText: 'Heute',
+                  allDayEventText: 'Ganztägig',
+                  multiDayEndText: 'Ende',
+                  // isExpanded: false,
+                  // expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+                  datePickerType: DatePickerType.date,
+                  dayOfWeekStyle: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 8,
+                  ),
+                ),
+              ),
 
-              const Text("Available Times", style: TextStyle(fontWeight: FontWeight.w600)),
-              const SizedBox(height: 12),
+              const SizedBox(height: 15),
+
+              const Text(
+                "Available Times",
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 10),
 
               /// Time slots
               Wrap(
                 spacing: 8,
                 runSpacing: 12,
-                children: times.map((time) {
-                  final isSelected = selectedTime == time;
-                  return ChoiceChip(
-                    label: Text(time),
-                    selected: isSelected,
-                    onSelected: (_) {
-                      setState(() {
-                        selectedTime = time;
-                      });
-                    },
-                    selectedColor: Colors.black,
-                    backgroundColor: Colors.grey.shade200,
-                    labelStyle: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black,
-                    ),
-                  );
-                }).toList(),
+                children:
+                    times.map((time) {
+                      final isSelected = selectedTime == time;
+                      return ChoiceChip(
+                        label: Text(time),
+                        selected: isSelected,
+                        onSelected: (_) {
+                          setState(() {
+                            selectedTime = time;
+                          });
+                        },
+                        selectedColor: Colors.black,
+                        backgroundColor: Colors.grey.shade200,
+                        labelStyle: TextStyle(
+                          color: isSelected ? Colors.white : Colors.black,
+                        ),
+                      );
+                    }).toList(),
               ),
               const Spacer(),
 
