@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'TimeSlotScreen.dart';
 
 class ServiceSelectionScreen extends StatefulWidget {
   const ServiceSelectionScreen({super.key});
@@ -138,7 +139,10 @@ class _ServiceSelectionScreenState extends State<ServiceSelectionScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate or handle selection
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder:(context)=> const ChooseTimeSlotScreen())
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
