@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
+import 'EnterVehicleInfoScreen.dart';
 
 class ChooseTimeSlotScreen extends StatefulWidget {
   const ChooseTimeSlotScreen({super.key});
@@ -149,7 +150,7 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              SizedBox (
+              SizedBox(
                 height: 320,
                 child: Calendar(
                   startOnMonday: false,
@@ -214,7 +215,12 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Confirm logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EnterVehicleInfoScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
