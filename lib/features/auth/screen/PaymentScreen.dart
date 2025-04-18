@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helllo_world/features/auth/screen/ReportReadyScreen.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -36,9 +37,10 @@ class PaymentScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Invoice Summary",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 16)),
+                  const Text(
+                    "Invoice Summary",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                  ),
                   const SizedBox(height: 16),
                   _buildItemRow("Service", "Business Consultation", "150.00"),
                   const SizedBox(height: 12),
@@ -64,15 +66,16 @@ class PaymentScreen extends StatelessWidget {
                 children: const [
                   Text(
                     "Total Amount",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                   ),
                   Row(
                     children: [
                       Text(
                         "\$220.00",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                       SizedBox(width: 8),
                       Icon(Icons.credit_card, size: 20),
@@ -89,14 +92,20 @@ class PaymentScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Payment logic
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ReportReadyScreen(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade400,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 child: const Text("Pay Now"),
               ),
@@ -112,17 +121,17 @@ class PaymentScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title,
-                  style: const TextStyle(
-                      fontSize: 13, color: Colors.black54)),
-              const SizedBox(height: 2),
-              Text(subtitle,
-                  style: const TextStyle(fontWeight: FontWeight.w500)),
-            ]),
-        Text("\$$amount",
-            style: const TextStyle(fontWeight: FontWeight.w500)),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontSize: 13, color: Colors.black54),
+            ),
+            const SizedBox(height: 2),
+            Text(subtitle, style: const TextStyle(fontWeight: FontWeight.w500)),
+          ],
+        ),
+        Text("\$$amount", style: const TextStyle(fontWeight: FontWeight.w500)),
       ],
     );
   }
