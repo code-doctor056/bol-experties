@@ -31,17 +31,6 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
     {'day': 'Thursday', 'time': '14:00–16:00', 'note': 'Recommended by AI'},
   ];
 
-    final List<NeatCleanCalendarEvent> _eventList = [
-    NeatCleanCalendarEvent(
-      'Example Event',
-      startTime: DateTime.now(),
-      endTime: DateTime.now().add(const Duration(hours: 1)),
-      description: 'Some description here',
-      color: Colors.deepOrange,
-    ),
-  ];
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,11 +150,11 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
               ),
               const SizedBox(height: 10),
               SizedBox (
-                height: 310,
+                height: 320,
                 child: Calendar(
                   startOnMonday: false,
                   weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-                  isExpandable: false,
+                  // isExpandable: true,
                   eventsList: null,
                   eventDoneColor: Colors.green,
                   selectedColor: Colors.pink,
@@ -174,15 +163,15 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                   eventColor: null,
                   locale: 'en_US',
                   todayButtonText: 'Heute',
-                  allDayEventText: 'Ganztägig',
-                  multiDayEndText: 'Ende',
-                  // isExpanded: false,
+                  // allDayEventText: 'Ganztägig',
+                  // multiDayEndText: 'Ende',
+                  isExpanded: true,
                   // expandableDateFormat: 'EEEE, dd. MMMM yyyy',
-                  datePickerType: DatePickerType.date,
+                  // datePickerType: DatePickerType.date,
                   dayOfWeekStyle: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w800,
-                    fontSize: 8,
+                    fontSize: 11,
                   ),
                 ),
               ),
