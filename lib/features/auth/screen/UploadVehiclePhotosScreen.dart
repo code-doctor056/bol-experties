@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helllo_world/features/auth/screen/ReportProgressScreen.dart';
 
 class UploadVehiclePhotosScreen extends StatelessWidget {
   const UploadVehiclePhotosScreen({super.key});
@@ -58,50 +59,51 @@ class UploadVehiclePhotosScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                   childAspectRatio: 1.1,
-                  children: photoFields.map((field) {
-                    final isAdded = field['added'] as bool;
-                    return GestureDetector(
-                      onTap: () {
-                        // handle image capture
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              isAdded ? Icons.check_circle : Icons.camera_alt_outlined,
-                              color: isAdded ? Colors.black : Colors.grey,
-                              size: 28,
+                  children:
+                      photoFields.map((field) {
+                        final isAdded = field['added'] as bool;
+                        return GestureDetector(
+                          onTap: () {
+                            // handle image capture
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade300),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            const SizedBox(height: 10),
-                            Text(
-                              field['label'],
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 13),
-                            ),
-                            if (isAdded)
-                              const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Text(
-                                  "Photo added",
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: Colors.grey,
-                                  ),
+                            padding: const EdgeInsets.all(12),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  isAdded
+                                      ? Icons.check_circle
+                                      : Icons.camera_alt_outlined,
+                                  color: isAdded ? Colors.black : Colors.grey,
+                                  size: 28,
                                 ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }).toList(),
+                                const SizedBox(height: 10),
+                                Text(
+                                  field['label'],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 13),
+                                ),
+                                if (isAdded)
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      "Photo added",
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
                 ),
               ),
 
@@ -110,7 +112,12 @@ class UploadVehiclePhotosScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle photo submission
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ReportProgressScreen(),
+                      ),
+                    ); // Handle photo submission
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,

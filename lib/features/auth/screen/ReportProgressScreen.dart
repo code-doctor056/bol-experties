@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helllo_world/features/auth/screen/ContactBankDetailsScreen.dart';
 
 class ReportProgressScreen extends StatelessWidget {
   const ReportProgressScreen({super.key});
@@ -51,10 +52,7 @@ class ReportProgressScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
-            const Text(
-              "Report #RT-2847",
-              style: TextStyle(color: Colors.grey),
-            ),
+            const Text("Report #RT-2847", style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 24),
 
             /// Progress List
@@ -100,9 +98,10 @@ class ReportProgressScreen extends StatelessWidget {
                     subtitle: Text(
                       step['subtitle'] as String,
                       style: TextStyle(
-                        color: step['status'] == 'in_progress'
-                            ? Colors.blue
-                            : Colors.grey,
+                        color:
+                            step['status'] == 'in_progress'
+                                ? Colors.blue
+                                : Colors.grey,
                       ),
                     ),
                   ),
@@ -128,7 +127,7 @@ class ReportProgressScreen extends StatelessWidget {
                       'Estimated completion time\n2–3 business days',
                       style: TextStyle(fontSize: 14),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -153,7 +152,14 @@ class ReportProgressScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ContactBankDetailsScreen(),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.support_agent_outlined),
                 label: const Text("Contact Support"),
                 style: OutlinedButton.styleFrom(
