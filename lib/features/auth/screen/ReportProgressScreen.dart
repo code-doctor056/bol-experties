@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helllo_world/features/auth/screen/ContactBankDetailsScreen.dart';
+import 'package:timelines_plus/timelines_plus.dart';
 
 class ReportProgressScreen extends StatelessWidget {
   const ReportProgressScreen({super.key});
@@ -55,60 +56,76 @@ class ReportProgressScreen extends StatelessWidget {
             const Text("Report #RT-2847", style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 24),
 
-            /// Progress List
-            ...steps.asMap().entries.map((entry) {
-              final index = entry.key;
-              final step = entry.value;
-              final isLast = index == steps.length - 1;
-              Color iconColor;
-              IconData iconData;
+            /// TIMELINE START
+            FixedTimeline.tileBuilder(
+              theme: TimelineThemeData(
+                nodePosition: 0,
+                indicatorPosition: 0.2,
+                color: Colors.grey,
+                indicatorTheme: const IndicatorThemeData(size: 20),
+                connectorTheme: const ConnectorThemeData(thickness: 2.0),
+              ),
 
-              switch (step['status']) {
-                case 'completed':
-                  iconColor = Colors.green;
-                  iconData = Icons.check_circle;
-                  break;
-                case 'in_progress':
-                  iconColor = Colors.blue;
-                  iconData = Icons.radio_button_checked;
-                  break;
-                default:
-                  iconColor = Colors.grey.shade400;
-                  iconData = Icons.radio_button_unchecked;
-              }
+              builder: TimelineTileBuilder.connected(
+                itemCount: steps.length,
+                connectorBuilder:
+                    (_, index, ___) =>
+                        SolidLineConnector(color: Colors.grey.shade300),
+                indicatorBuilder: (context, index) {
+                  final status = steps[index]['status'];
+                  Color color;
+                  IconData icon;
+                  switch (status) {
+                    case 'completed':
+                      color = Colors.green;
+                      icon = Icons.check;
+                      break;
+                    case 'in_progress':
+                      color = Colors.blue;
+                      icon = Icons.autorenew;
+                      break;
+                    default:
+                      color = Colors.grey;
+                      icon = Icons.radio_button_unchecked;
+                  }
+                  return DotIndicator(
+                    color: color,
+                    child: Icon(icon, size: 12, color: Colors.white),
+                  );
+                },
+                contentsBuilder: (_, index) {
+                  final step = steps[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8, bottom: 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          step['title']!,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          step['subtitle']!,
+                          style: TextStyle(
+                            color:
+                                step['status'] == 'in_progress'
+                                    ? Colors.blue
+                                    : Colors.grey,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
 
-              return Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 14),
-                      height: 70,
-                      width: 2,
-                      color: isLast ? Colors.transparent : Colors.grey.shade300,
-                    ),
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(iconData, color: iconColor),
-                    title: Text(
-                      step['title'] as String,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      step['subtitle'] as String,
-                      style: TextStyle(
-                        color:
-                            step['status'] == 'in_progress'
-                                ? Colors.blue
-                                : Colors.grey,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }),
-
+            /// TIMELINE END
             const SizedBox(height: 20),
 
             /// Estimated Completion Time Box

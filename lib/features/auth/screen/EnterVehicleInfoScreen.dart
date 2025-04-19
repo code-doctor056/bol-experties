@@ -73,7 +73,6 @@ class EnterVehicleInfoScreen extends StatelessWidget {
               /// Manual VIN input
               OutlinedButton(
                 onPressed: () {},
-                child: const Text("Enter VIN Manually"),
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
                   side: BorderSide(color: Colors.grey.shade400),
@@ -81,6 +80,7 @@ class EnterVehicleInfoScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+                child: const Text("Enter VIN Manually"),
               ),
               const SizedBox(height: 24),
 
