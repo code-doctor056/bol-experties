@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
 
   void _handleGoogleSignIn() async {
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  String? _validateEmail(String? value) {
+  String? validateEmail(String? value) {
     const pattern = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
     final regex = RegExp(pattern);
     if (value == null || value.isEmpty) {
@@ -70,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Form(
+          key: _formKey,
           child: ListView(
             children: [
               const SizedBox(height: 100),
@@ -99,7 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 32),
 
-              TextField(
+              TextFormField(
+                controller: emailController,
+                validator: validateEmail,
                 decoration: InputDecoration(
                   hintText: "Email",
                   filled: true,
@@ -111,8 +114,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              TextField(
+              TextFormField(
                 obscureText: _obscurePassword,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'password is required';
+                  } else if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   hintText: "Password",
                   filled: true,
@@ -150,12 +161,14 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ServiceSelectionScreen(),
-                    ),
-                  );
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ServiceSelectionScreen(),
+                      ),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
