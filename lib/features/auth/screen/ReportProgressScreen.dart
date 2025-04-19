@@ -60,7 +60,7 @@ class ReportProgressScreen extends StatelessWidget {
             FixedTimeline.tileBuilder(
               theme: TimelineThemeData(
                 nodePosition: 0,
-                indicatorPosition: 0.2,
+                indicatorPosition: 0.1,
                 color: Colors.grey,
                 indicatorTheme: const IndicatorThemeData(size: 20),
                 connectorTheme: const ConnectorThemeData(thickness: 2.0),
