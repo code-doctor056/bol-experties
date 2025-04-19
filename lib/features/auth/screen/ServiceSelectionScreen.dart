@@ -8,8 +8,11 @@ class ServiceSelectionScreen extends StatefulWidget {
   State<ServiceSelectionScreen> createState() => _ServiceSelectionScreenState();
 }
 
-class _ServiceSelectionScreenState extends State<ServiceSelectionScreen> {
+class _ServiceSelectionScreenState extends State<ServiceSelectionScreen> with SingleTickerProviderStateMixin{
   int _selectedService = 0;
+
+  late AnimationController _animationController;
+  late Animation<double> _progressAnimation;
 
   final List<ServiceOption> services = [
     ServiceOption(
@@ -33,6 +36,27 @@ class _ServiceSelectionScreenState extends State<ServiceSelectionScreen> {
   ];
 
   @override
+  void initState(){
+    super.initState();
+    _animationController = AnimationController(
+      vsync:this,
+      duration:const Duration(milliseconds:800)
+    );
+
+    _progressAnimation =Tween <double>(begin:0.0, end:0.25,).animate(
+      CurvedAnimation(parent: _animationController, curve:Curves.easeInOut),
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -51,12 +75,15 @@ class _ServiceSelectionScreenState extends State<ServiceSelectionScreen> {
                 ],
               ),
               const SizedBox(height: 6),
-              LinearProgressIndicator(
-                value: 0.25,
-                backgroundColor: Colors.grey.shade300,
-                color: Colors.black,
-                minHeight: 4,
-              ),
+              AnimatedBuilder(animation: _progressAnimation, builder:(context, child){
+                return LinearProgressIndicator(
+                  value: _progressAnimation.value,
+                  backgroundColor: Colors.grey.shade300,
+                  color:Colors.black,
+                  minHeight:4,
+                );
+              }),
+
               const SizedBox(height: 24),
 
               /// Title
