@@ -100,7 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 32),
 
-              TextField(
+              TextFormField(
+                controller: emailController,
+                validator: validateEmail,
                 decoration: InputDecoration(
                   hintText: "Email",
                   filled: true,
@@ -112,8 +114,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              TextField(
+              TextFormField(
                 obscureText: _obscurePassword,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'password is required';
+                  } else if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   hintText: "Password",
                   filled: true,
@@ -151,12 +161,14 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ServiceSelectionScreen(),
-                    ),
-                  );
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ServiceSelectionScreen(),
+                      ),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
