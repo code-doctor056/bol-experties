@@ -66,30 +66,6 @@ class _ServiceSelectionScreenState extends State<ServiceSelectionScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Step Progress
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Step 1 of 4", style: TextStyle(fontSize: 12)),
-                  Text("25%", style: TextStyle(fontSize: 12)),
-                ],
-              ),
-              const SizedBox(height: 6),
-              AnimatedBuilder(
-                animation: _progressAnimation,
-                builder: (context, child) {
-                  return LinearProgressIndicator(
-                    value: _progressAnimation.value,
-                    backgroundColor: Colors.grey.shade300,
-                    color: Colors.black,
-                    minHeight: 4,
-                  );
-                },
-              ),
-
-              const SizedBox(height: 24),
-
-              /// Title
               const Text(
                 "Which service do you need?",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
