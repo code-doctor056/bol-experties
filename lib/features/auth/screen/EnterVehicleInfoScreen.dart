@@ -107,34 +107,6 @@ class EnterVehicleInfoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-              const Spacer(),
-
-              /// Continue Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const UploadVehiclePhotosScreen(),
-                      ),
-                    );
-
-                    // handle continue
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text("Continue"),
-                ),
-              ),
             ],
           ),
         ),
