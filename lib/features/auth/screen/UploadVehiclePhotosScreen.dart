@@ -23,23 +23,6 @@ class UploadVehiclePhotosScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Step Progress
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Step 4 of 4", style: TextStyle(fontSize: 12)),
-                  Text("100%", style: TextStyle(fontSize: 12)),
-                ],
-              ),
-              const SizedBox(height: 6),
-              LinearProgressIndicator(
-                value: 1.0,
-                backgroundColor: Colors.grey.shade300,
-                color: Colors.black,
-                minHeight: 4,
-              ),
-              const SizedBox(height: 24),
-
               /// Title
               const Text(
                 "Upload Vehicle Photos",
