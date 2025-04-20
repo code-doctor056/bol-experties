@@ -89,30 +89,6 @@ class UploadVehiclePhotosScreen extends StatelessWidget {
                       }).toList(),
                 ),
               ),
-
-              /// Submit Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ReportProgressScreen(),
-                      ),
-                    ); // Handle photo submission
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text("Submit Photos"),
-                ),
-              ),
             ],
           ),
         ),
