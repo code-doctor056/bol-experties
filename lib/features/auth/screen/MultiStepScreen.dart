@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'ServiceSelectionScreen.dart';
 import 'TimeSlotScreen.dart';
 import 'EnterVehicleInfoScreen.dart';
+import 'UploadVehiclePhotosScreen.dart';
 
 class MultiStepScreen extends StatefulWidget {
   const MultiStepScreen({super.key});
@@ -85,6 +86,7 @@ class _MultiStepScreenState extends State<MultiStepScreen>
                   ServiceSelectionScreen(),
                   ChooseTimeSlotScreen(),
                   EnterVehicleInfoScreen(),
+                  UploadVehiclePhotosScreen(),
                   // PaymentScreen(),
                 ],
               ),
