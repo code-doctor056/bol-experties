@@ -42,22 +42,6 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Step and Progress
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Step 2 of 4", style: TextStyle(fontSize: 12)),
-                  Text("50%", style: TextStyle(fontSize: 12)),
-                ],
-              ),
-              const SizedBox(height: 6),
-              LinearProgressIndicator(
-                value: 0.5,
-                backgroundColor: Colors.grey.shade300,
-                color: Colors.black,
-                minHeight: 4,
-              ),
-              const SizedBox(height: 20),
               const Text(
                 "Choose a Time Slot",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -139,7 +123,7 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                 }),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
 
               /// Calendar Section
               Text(
@@ -151,7 +135,7 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: 320,
+                height: 310,
                 child: Calendar(
                   startOnMonday: false,
                   weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
@@ -177,7 +161,7 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                 ),
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: 8),
 
               const Text(
                 "Available Times",
@@ -187,8 +171,8 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
 
               /// Time slots
               Wrap(
-                spacing: 8,
-                runSpacing: 12,
+                spacing: 6,
+                runSpacing: 9,
                 children:
                     times.map((time) {
                       final isSelected = selectedTime == time;
@@ -207,31 +191,6 @@ class _ChooseTimeSlotScreenState extends State<ChooseTimeSlotScreen> {
                         ),
                       );
                     }).toList(),
-              ),
-              const Spacer(),
-
-              /// Confirm Appointment Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EnterVehicleInfoScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text("Confirm Appointment"),
-                ),
               ),
             ],
           ),
