@@ -14,23 +14,6 @@ class EnterVehicleInfoScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Step Progress
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Step 3 of 4", style: TextStyle(fontSize: 12)),
-                  Text("75%", style: TextStyle(fontSize: 12)),
-                ],
-              ),
-              const SizedBox(height: 6),
-              LinearProgressIndicator(
-                value: 0.75,
-                backgroundColor: Colors.grey.shade300,
-                color: Colors.black,
-                minHeight: 4,
-              ),
-              const SizedBox(height: 24),
-
               /// Title
               const Text(
                 "Enter Vehicle Information",
