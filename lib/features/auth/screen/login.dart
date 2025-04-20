@@ -1,5 +1,5 @@
 // File: lib/features/auth/screens/login_screen.dart
-import 'ServiceSelectionScreen.dart';
+import 'MultiStepScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -25,9 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
         //you can pass the result to your backend or proceed further
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const ServiceSelectionScreen(),
-          ),
+          MaterialPageRoute(builder: (context) => const MultiStepScreen()),
         );
       }
     } catch (error) {
@@ -46,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //Handle credential and navigate
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ServiceSelectionScreen()),
+        MaterialPageRoute(builder: (context) => const MultiStepScreen()),
       );
     } catch (error) {
       debugPrint("Apple Sign-In Error: $error");
@@ -165,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ServiceSelectionScreen(),
+                        builder: (context) => const MultiStepScreen(),
                       ),
                     );
                   }
