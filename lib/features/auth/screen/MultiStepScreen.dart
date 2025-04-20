@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helllo_world/features/auth/screen/ReportProgressScreen.dart';
 import 'ServiceSelectionScreen.dart';
 import 'TimeSlotScreen.dart';
 import 'EnterVehicleInfoScreen.dart';
@@ -98,7 +99,18 @@ class _MultiStepScreenState extends State<MultiStepScreen>
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _goToNextStep,
+                  onPressed: () {
+                    if (currentStep == totalSteps - 1) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ReportProgressScreen(),
+                        ),
+                      );
+                    } else {
+                      _goToNextStep();
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(vertical: 16),
