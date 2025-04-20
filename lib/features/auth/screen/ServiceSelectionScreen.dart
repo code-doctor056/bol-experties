@@ -139,32 +139,6 @@ class _ServiceSelectionScreenState extends State<ServiceSelectionScreen>
                   ),
                 );
               }),
-
-              const Spacer(),
-
-              /// Next Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ChooseTimeSlotScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text("Next"),
-                ),
-              ),
             ],
           ),
         ),
